@@ -5,7 +5,7 @@ import router from "./routes/user-routes.js";
 import cors from "cors";
 const dotenv = import('dotenv');
 // const DATABASE = process.env.DATABASE;
-const BASE_URL = process.env.BASE_URL;
+const PORT = process.env.PORT;
 
 
 
@@ -28,7 +28,7 @@ mongoose
     
      'mongodb+srv://admin:admin123@cluster1.grxnlua.mongodb.net/Blog?retryWrites=true&w=majority'
     )
-    .then(() => app.listen(process.env.BASE_URL || 5000))
+    .then(() => app.listen( PORT || 5000))
     .then(() => console.log("Connected to Database or listening to the port 5000"))
     .catch(function(err){ console.log(err)});
 
