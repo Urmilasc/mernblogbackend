@@ -1,11 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose"
 import blogRouter from "./routes/blog-routes.js";
 import router from "./routes/user-routes.js";
 import cors from "cors";
-const dotenv = import('dotenv');
-// const DATABASE = process.env.DATABASE;
-const PORT = process.env.PORT;
+
+
+
+const PORT = process.env.PORT || 5000 ;
+// const uri = process.env.MONGODB_URI;
 
 
 
@@ -22,13 +26,14 @@ app.use("/api/blog" , blogRouter)
 //     app.use(express.static("frontend/build"))
 // }
 
+
+
+
+
 mongoose.set("strictQuery", false);
 mongoose
-.connect( 
-    
-     'mongodb+srv://admin:admin123@cluster1.grxnlua.mongodb.net/Blog?retryWrites=true&w=majority'
-    )
-    .then(() => app.listen( PORT || 5000))
+.connect(process.env.MONGODB_URI)
+    .then(() => app.listen( PORT))
     .then(() => console.log("Connected to Database or listening to the port 5000"))
     .catch(function(err){ console.log(err)});
 
